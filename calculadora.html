@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+   
+   <style>
+    body {
+        background-color: aquamarine;
+        color: rgb(76, 88, 156);
+        font-family: arial;
+        height: 60vh; /*vai definir o local onde vai ficar sem isso o align-items não presta*/
+        display: flex;
+        flex-direction: column;
+        align-items: center; /*alinha o corpo no meio da tela*/
+        justify-content: center; /*alinha o conteúdo ao centro*/
+    }
+
+    .Calculadora {
+        border: 3px solid; /*cria uma borda em volta de algo*/
+        padding: 20px; /*adiciona o espaço do contorno q é criado pelo border*/
+        margin: 10px; /*vai alterar os espaços entre os itens*/
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /*faz os botões se alinharem em 4 colunas*/
+        gap: 10px;
+    }
+
+    input {
+        grid-column: span 4; /*faz com que o input ocupe toda a largura da grid*/
+        font-size: 1.5em;
+        padding: 10px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 1.2em;
+        cursor: pointer;
+    }
+
+</style>
+</head>
+
+<body>
+    <h1>Calculadora</h1>
+    <div class="Calculadora">
+        <input type="text" name="" id="resultado" readonly>
+        <button onclick="adicionarNumero('1')">1</button>
+        <button onclick="adicionarNumero('2')">2</button>
+        <button onclick="adicionarNumero('3')">3</button>
+        <button onclick="adicionarNumero('4')">4</button>
+        <button onclick="adicionarNumero('5')">5</button>
+        <button onclick="adicionarNumero('6')">6</button>
+        <button onclick="adicionarNumero('7')">7</button>
+        <button onclick="adicionarNumero('8')">8</button>
+        <button onclick="adicionarNumero('9')">9</button>
+        <button onclick="adicionarNumero('0')">0</button>
+        <button onclick="adicionarSimbolo('+')">+</button>
+        <button onclick="adicionarSimbolo('-')">-</button>
+        <button onclick="adicionarSimbolo('*')">*</button>
+        <button onclick="adicionarSimbolo('/')">/</button>
+        <button onclick="calcular()">Calcular</button>
+        <button onclick="limpar()">C</button>
+    </div>
+    <script>
+        //adicionar uma função tipo oq o codigo vai ter q fazer 
+        //função para adicionar numero ao resultado
+        function adicionarNumero(numero){
+            document.getElementById('resultado').value += numero;
+        }
+
+        //função para adicionar simbolo ao resultado
+        function adicionarSimbolo(simbolo){
+            document.getElementById('resultado').value += simbolo;
+        }
+
+        //para calcular o resultado
+        function calcular(){
+           let resultado = document.getElementById('resultado').value;  
+           try{
+            //avalia a expressão matematica e mosta o resultaddo 
+            document.getElementById('resultado').value = eval(resultado);        
+           } catch (e){
+            //se houver algum erro na expressão mostra "Erro"
+            document.getElementById('resultado').value = 'Erro';
+           }
+        }
+
+        //para limpar tudo
+        function limpar(){
+            document.getElementById('resultado').value = '';
+        }
+       
+    </script>
+</body>
+</html>
